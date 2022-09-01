@@ -1,0 +1,38 @@
+from Clases.menu import *
+from Clases.equipo import *
+from Clases.prestamo import *
+
+def main():
+    menu = Menu("Escuela de Ingenieria")
+    op=menu.ver()
+    if op =="1":
+        menu2=MenuTecnicos()
+        op2=menu2.ver()
+        if op2 =="1":
+            e=CEquipo()
+            e.verDatos()
+            e.save()
+
+        elif op2 =="2":
+            p=CPrestamo()
+            p.save()
+        
+        elif op2 =="3":
+            registroMantenimiento()
+
+        elif op2 =="4":
+            registroEntrega()
+        
+        else:
+            print("Opción inválida")
+            main()
+
+    elif op =="2":
+        menu2=MenuEstudiantes()
+        op2=menu2.ver()
+        if op2 =="1":
+             ConsultarPrestamos()
+    
+
+if __name__=='__main__':
+    main()
