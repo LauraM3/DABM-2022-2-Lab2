@@ -1,6 +1,6 @@
-
-from dataclasses import dataclass
 from tabulate import tabulate
+from .prestamo import *
+
 global datos
 datos=[]
 
@@ -41,13 +41,35 @@ def CEquipo():
 
 
     e = Equipo(Nombre,Referencia,Proveedor,CMantenimiento,Cantidad,UFecha)
-
-
     return e
 
 def consultarEquipo():
     print("Consulta de equipos")
-    Nombre=input("Nombre del equipo: ")
+    Encabezado_disp =["Equipo","Cantidades disponibles"]
+    consulta= getAllEquipos()
+    Nombre_Eq=input("Nombre del equipo: ")
+
+    for e in consulta:
+        if Nombre_Eq in e:
+            numeroEquipos = e.split(";")
+            n_equipos = int(numeroEquipos[4])
+
+    consulta_2= getAllPrestamos()
+
+    Numero=[]
+    for p in consulta_2:
+        if Nombre_Eq in p:
+            Numero.append(1)
+ 
+    total=sum(Numero)
+
+    disponibles=n_equipos-total
+    disponibles=str(disponibles)
+
+    data=[[Nombre_Eq,disponibles]]
+    print(tabulate(data,Encabezado_disp,tablefmt="grid"))
+            
+
 
 def registroMantenimiento():
     listaEquipos = getAllEquipos()

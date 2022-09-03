@@ -18,8 +18,6 @@ class Prestamo:
         file.write(prestamo +"\n")
         file.close()
 
-    def consulta(self, Nombre):
-        pass
 
 
 def CPrestamo():
